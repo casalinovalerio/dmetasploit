@@ -7,6 +7,6 @@ RUN apt -y update \
     && apt -y install metasploit-framework vim mlocate exploitdb
 
 # In docker, there's no systemctl, so a sed is necessary
-RUN sed 's/systemctl start ${PG_SERVICE}/service ${PG_SERVICE} start/g;s/systemctl status ${PG_SERVICE}/service ${PG_SERVICE} status/g;s/systemctl stop ${PG_SERVICE}/service ${PG_SERVICE} stop/g' /usr/bin/msfdb
+RUN sed -i 's/systemctl start ${PG_SERVICE}/service ${PG_SERVICE} start/g;s/systemctl status ${PG_SERVICE}/service ${PG_SERVICE} status/g;s/systemctl stop ${PG_SERVICE}/service ${PG_SERVICE} stop/g' /usr/bin/msfdb
 
 RUN msfdb init && msfdb start
